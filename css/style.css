@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+  background: #646464;
+    width: 100%;
+    z-index: 1000; /* Ajusta según sea necesario para asegurar que esté por encima de otros elementos */
+    height: 15%;
+
+    .logoheader{
+      width: 180px;
+      height: 80px;
+    }
+    .cantidad {
+      color: rgb(7, 207, 7);
+      font-weight: 600; /* o puedes usar font-weight: 700; */
+  }
+}
+
+main{
+  .search {
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+  }
+  .contenedor{
+      width: 40%;
+      margin: 50px auto;
+  }
+  .search__input {
+      font-family: inherit;
+      font-size: inherit;
+      background-color: #f4f2f2;
+      border: none;
+      color: #646464;
+      padding: 0.7rem 1rem;
+      border-radius: 30px;
+      width: 20%;
+      transition: all ease-in-out .5s;
+      margin-right: -2rem;
+  }
+  
+  .search__input:hover, .search__input:focus {
+      box-shadow: 0 0 1em #00000013;
+  }
+  
+  .search__input:focus {
+      outline: none;
+      background-color: #f0eeee;
+  }
+  
+  .search__input::-webkit-input-placeholder {
+      font-weight: 100;
+      color: #ccc;
+  }
+  
+  .search__input:focus + .search__button {
+      background-color: #f0eeee;
+  }
+  
+  .search__button {
+      border: none;
+      background-color: #f4f2f2;
+      margin-top: .1em;
+  }
+  
+  .search__button:hover {
+      cursor: pointer;
+  }
+  
+  .search__icon {
+      height: 1.3em;
+      width: 1.3em;
+      fill: #b4b4b4;
+  }
+
+
+  .card {
+  width: 150px;
+  height: 200px;
+  box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
+  transition: all 120ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 0.5em;
+  padding-bottom: 3.4em;
+  position: relative;
+}
+
+.card:hover::after {
+  bottom: 0;
+  opacity: 1;
+  height: 50px;
+}
+
+
+.card .title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.0em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 1.875em;
+  font-weight: 400;
+  color: #000;
+}
+
+.card .price {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.0em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 0.625em;
+  color: #000;
+}
+
+.text {
+  margin-left: 9px;
+  max-width: 55px;
+  font-size: 90px;
+}
+.boton{
+  background-color: rgb(1, 82, 37) !important;
+  border-radius: 15px;
+
+ }
+button:hover {
+  background-color: rgb(2, 150, 68) !important;
+  color: white;
+  border-color: lightgray;
+}
+
+button:active {
+  
+  background-color: black !important;
+  color: rgb(0, 128, 17);
+  border-color: black;
+}
+
+    .image {
+      background: rgb(241, 241, 241);
+      width: 100%;
+      height: 120px;
+      place-items: center;
+    }
+
+  
+
+}
+
+
+.maincarrito{
+  .imagen-carrito{
+    font-size: 60px;
+
+  }
+
+}
