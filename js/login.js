@@ -3,6 +3,10 @@ const carrit = document.getElementById('carrito')
 const bs = document.getElementById('busqueda')
 const lupita= document.getElementById('lupa')
 const cant= document.getElementById('cantidadcarriti')
+const abri= document.querySelector('#abrigos')
+const pant= document.querySelector('#pantalones')
+const acct= document.querySelector('#accesorios')
+const rem = document.querySelector('#remeras')
 const carrito = JSON.parse(localStorage.getItem("carritonube")) || [];
 console.log('Carrito inicial:', carrito);
 class usuarioo{
@@ -137,6 +141,52 @@ bs.addEventListener("search", ()=>{
 lupita.addEventListener("click",()=>{
     filtrarProduct()
 })
+
+
+    abri.addEventListener("click",()=>{
+        card.innerHTML=""
+        productos.forEach((producto) => {
+            if (producto.categoria === "BUZO") {
+                card.innerHTML += retornarCardHTML(producto)
+                console.table(producto)
+            }
+        })
+        CargarProducalCarrito()
+        cantidadCarro()
+    })
+    pant.addEventListener("click",()=>{
+        card.innerHTML=""
+        productos.forEach((producto) => {
+            if (producto.categoria === "PANTALONES") {
+                card.innerHTML += retornarCardHTML(producto)
+                console.table(producto)
+            }
+        })
+        CargarProducalCarrito()
+        cantidadCarro()
+    })
+    acct.addEventListener("click",()=>{
+        card.innerHTML=""
+        productos.forEach((producto) => {
+            if (producto.categoria === "ACCESORIOS") {
+                card.innerHTML += retornarCardHTML(producto)
+                console.table(producto)
+            }
+        })
+        CargarProducalCarrito()
+        cantidadCarro()
+    })
+    rem.addEventListener("click",()=>{
+        card.innerHTML=""
+        productos.forEach((producto) => {
+            if (producto.categoria === "REMERAS") {
+                card.innerHTML += retornarCardHTML(producto)
+                console.table(producto)
+            }
+        })
+        CargarProducalCarrito()
+        cantidadCarro()
+    })
 
 
 
