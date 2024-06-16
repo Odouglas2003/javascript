@@ -3,7 +3,6 @@ const carrit = document.getElementById('carrito')
 const bs = document.getElementById('busqueda')
 const lupita= document.getElementById('lupa')
 const cant= document.getElementById('cantidadcarriti')
-
 const carrito = JSON.parse(localStorage.getItem("carritonube")) || [];
 console.log('Carrito inicial:', carrito);
 class usuarioo{
@@ -15,44 +14,39 @@ class usuarioo{
         this.apellido = apellido;
     }
 }
-const usuarios =[
-    { id: 1, usuario:'octavio',clave:'753159', nombre: 'Octavio', apellido: 'Douglas'},
-    { id: 2, usuario:'ayelen',clave:'050899',nombre: 'Ayelen', apellido: 'Douglas' },
-    { id: 3, usuario:'victoria',clave:'753159',nombre: 'Ayelen', apellido: 'Diaz'   },
-    { id: 4, usuario:'maria',clave:'000000',nombre: 'Maria', apellido: 'Quiroga'  },
-]
-function login(){
-    let resul = prompt("¿Tiene cuenta? Ingrese 'si' o 'no'");
-    if (resul === 'si') {
-        let usa = prompt("Ingrese usuario");
-        let resultado = usuarios.find(usuario => usuario.usuario === usa);
-        if (resultado) {
-            let cla = prompt("Ingrese su clave");
-            if (resultado.clave === cla) {
-                alert("Bienvenido, " + resultado.nombre);
-            } else {
-                alert("Clave incorrecta");
-            }
-        } else {
-            alert("Usuario incorrecto");
-        }
-    }else{
-        let usu = prompt("ingrese su usuario para ingresar")
-        let cla = prompt("ingrese uan clave para su cuenta")
-        let nom = prompt("ingrese su nombre")
-        let ape = prompt("ingrese su apellido")
-        let cant = usuarios.length + 1
+// const usuarios =[
+//     { id: 1, usuario:'octavio',clave:'753159', nombre: 'Octavio', apellido: 'Douglas'},
+//     { id: 2, usuario:'ayelen',clave:'050899',nombre: 'Ayelen', apellido: 'Douglas' },
+//     { id: 3, usuario:'victoria',clave:'753159',nombre: 'Ayelen', apellido: 'Diaz'   },
+//     { id: 4, usuario:'maria',clave:'000000',nombre: 'Maria', apellido: 'Quiroga'  },
+// ]
+// function login(){
+//     let resul = prompt("¿Tiene cuenta? Ingrese 'si' o 'no'");
+//     if (resul === 'si') {
+//         let usa = prompt("Ingrese usuario");
+//         let resultado = usuarios.find(usuario => usuario.usuario === usa);
+//         if (resultado) {
+//             let cla = prompt("Ingrese su clave");
+//             if (resultado.clave === cla) {
+//                 alert("Bienvenido, " + resultado.nombre);
+//             } else {
+//                 alert("Clave incorrecta");
+//             }
+//         } else {
+//             alert("Usuario incorrecto");
+//         }
+//     }else{
+//         let usu = prompt("ingrese su usuario para ingresar")
+//         let cla = prompt("ingrese uan clave para su cuenta")
+//         let nom = prompt("ingrese su nombre")
+//         let ape = prompt("ingrese su apellido")
+//         let cant = usuarios.length + 1
 
-        usuarios.push(new usuarioo(cant,usu,cla,nom,ape));
-        alert("Bienvenido")
-        console.table(usuarios)
-    }
-}
-
-
-
-
-
+//         usuarios.push(new usuarioo(cant,usu,cla,nom,ape));
+//         alert("Bienvenido")
+//         console.table(usuarios)
+//     }
+// }
 
 function retornarCardHTML(producto) {
     return `<div class="card mb-3 ">
@@ -73,6 +67,7 @@ function cargarProductos(productos) {
     if (productos.length > 0) {
     card.innerHTML=""
     productos.forEach((producto) => card.innerHTML += retornarCardHTML(producto))
+    
     CargarProducalCarrito()
     cantidadCarro()
     } else {
@@ -148,5 +143,4 @@ lupita.addEventListener("click",()=>{
     //login()
     cargarProductos(productos);
     //filtrar()
-
 

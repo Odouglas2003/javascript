@@ -1,5 +1,6 @@
 const tableBody = document.querySelector("table tbody")
 const importeTotalCarrito = document.querySelector("td#importeTotalCarrito")
+const camprar = document.querySelector("btnComprar")
 
 
 const carrito = JSON.parse(localStorage.getItem("carritonube")) || [];
@@ -22,6 +23,7 @@ function cargarProductos() {
     if (carrito.length > 0) {
         tableBody.innerHTML=""
     carrito.forEach((producto) => tableBody.innerHTML += cartaproductoelejido(producto))
+    compra()
     eliminar()
     calcularTotalCarrito()
 
@@ -49,4 +51,16 @@ function eliminarProducto(index) {
     localStorage.setItem('carritonube', JSON.stringify(carrito)); // Actualizar almacenamiento local
     cargarProductos(); // Volver a cargar los productos en la tabla
 }
+function compra(){
+    btnComprar.addEventListener("click", () => {
+        // Vacía el carrito
+        carrito.length = 0;
+        // Actualiza el localStorage con el carrito vacío
+        localStorage.setItem("carritonube", JSON.stringify(carrito));
+        // Opcional: puedes agregar alguna lógica para notificar al usuario que el carrito se ha vaciado o redirigirlo a otra página
+        alert("Carrito vaciado. ¡Gracias por tu compra!");
+        cargarProductos()
+      });
+}
+
 cargarProductos()

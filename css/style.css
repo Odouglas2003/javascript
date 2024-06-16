@@ -17,6 +17,10 @@
       color: rgb(7, 207, 7);
       font-weight: 600; /* o puedes usar font-weight: 700; */
   }
+  .botones{
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+  }
 }
 
 main{
