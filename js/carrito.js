@@ -5,6 +5,20 @@ const camprar = document.querySelector("btnComprar")
 
 const carrito = JSON.parse(localStorage.getItem("carritonube")) || [];
 console.log('Carrito inicial:', carrito);
+
+
+
+function AlertFueEliminado( mensaje, color){
+    Toastify({
+
+        text:mensaje,
+        
+        duration: 3000,
+        style: {
+            background: color,
+          }
+        }).showToast();
+}
 function cartaproductoelejido(producto) {
     return `<tr>
                 <td class="imagen-carrito">${producto.imagen}</td>
@@ -43,6 +57,7 @@ function eliminar(){
     quitarBotones.forEach((boton, index) => {
         boton.addEventListener('click', () => {
             eliminarProducto(index);
+            AlertFueEliminado("Fue eliminado del carrito","red")
         });
     });
 }

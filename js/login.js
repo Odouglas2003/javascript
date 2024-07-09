@@ -7,51 +7,38 @@ const abri= document.querySelector('#abrigos')
 const pant= document.querySelector('#pantalones')
 const acct= document.querySelector('#accesorios')
 const rem = document.querySelector('#remeras')
+const productos=[]
+// const UrlJson= "js/usuario.json"
+const UrlJson= "https://668d50f6099db4c579f28cd1.mockapi.io/api/final/productos"
 const carrito = JSON.parse(localStorage.getItem("carritonube")) || [];
 console.log('Carrito inicial:', carrito);
-class usuarioo{
-    constructor(id,usuario,clave,nombre,apellido){
-        this.id = id;
-        this.usuario = usuario;
-        this.clave = clave;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
-}
-// const usuarios =[
-//     { id: 1, usuario:'octavio',clave:'753159', nombre: 'Octavio', apellido: 'Douglas'},
-//     { id: 2, usuario:'ayelen',clave:'050899',nombre: 'Ayelen', apellido: 'Douglas' },
-//     { id: 3, usuario:'victoria',clave:'753159',nombre: 'Ayelen', apellido: 'Diaz'   },
-//     { id: 4, usuario:'maria',clave:'000000',nombre: 'Maria', apellido: 'Quiroga'  },
-// ]
-// function login(){
-//     let resul = prompt("¿Tiene cuenta? Ingrese 'si' o 'no'");
-//     if (resul === 'si') {
-//         let usa = prompt("Ingrese usuario");
-//         let resultado = usuarios.find(usuario => usuario.usuario === usa);
-//         if (resultado) {
-//             let cla = prompt("Ingrese su clave");
-//             if (resultado.clave === cla) {
-//                 alert("Bienvenido, " + resultado.nombre);
-//             } else {
-//                 alert("Clave incorrecta");
-//             }
-//         } else {
-//             alert("Usuario incorrecto");
-//         }
-//     }else{
-//         let usu = prompt("ingrese su usuario para ingresar")
-//         let cla = prompt("ingrese uan clave para su cuenta")
-//         let nom = prompt("ingrese su nombre")
-//         let ape = prompt("ingrese su apellido")
-//         let cant = usuarios.length + 1
 
-//         usuarios.push(new usuarioo(cant,usu,cla,nom,ape));
-//         alert("Bienvenido")
-//         console.table(usuarios)
-//     }
+// window.onload =function(){
+//     $('#onload').fadeOut() 
+//     $('body').removeClass('hidden')
+    
 // }
 
+function alerta(mensaje,icono){
+    Swal.fire({
+        title: 'FLIPPO',
+        text: mensaje,
+        icon: icono,
+        timer:3500,
+        showConfirmButton: false,
+      })
+}
+function AlertFueagregado( mensaje, color){
+    Toastify({
+
+        text:mensaje,
+        
+        duration: 3000,
+        style: {
+            background: color,
+          }
+        }).showToast();
+}
 function retornarCardHTML(producto) {
     return `<div class="card mb-3 ">
                 <div class="image"><span class="text ">${producto.imagen}</span></div>
@@ -67,14 +54,33 @@ function retornarCardError() {
                 <h3>Intenta nuevamente en unos instantes...🤦🏻‍♂️</h3>
             </div>`
 }
-function cargarProductos(productos) {
-    if (productos.length > 0) {
-    card.innerHTML=""
-    productos.forEach((producto) => card.innerHTML += retornarCardHTML(producto))
+
+function buscarproductoJSON() {
+    fetch(UrlJson)
+    .then((response)=> response.json())
+    .then((datos)=> productos.push(...datos) )
+    .then(()=> cargarProductos(productos))
+    .catch((error)=> {
+            console.error('Error al cargar productos:',error)
+            card.innerHTML = retornarCardError()
+        })
     
-    CargarProducalCarrito()
-    cantidadCarro()
-    } else {
+}
+
+
+
+
+
+function cargarProductos(array) {
+    try {
+        if (array.length > 0) {
+            card.innerHTML=""
+            productos.forEach((producto) => card.innerHTML += retornarCardHTML(producto))
+            CargarProducalCarrito()
+            cantidadCarro()
+        } 
+    }catch(error){
+        console.error('Error al cargar productos:', error);
         card.innerHTML = retornarCardError()
     }
 }
@@ -101,8 +107,8 @@ function CargarProducalCarrito() {
                     carrito.push(productosel);
                     cantidadCarro()
                     localStorage.setItem("carritonube", JSON.stringify(carrito));
-                    alert("Producto agregado al carrito");
                     console.table(carrito);
+                    AlertFueagregado("Producto agregado al carrito","green")
                 } else {
                     alert("Producto no encontrado");
                 }
@@ -129,7 +135,7 @@ carrit.addEventListener("click", () => {
         console.log("Redirigiendo a carrito.html");  // Depuración
         location.href = "./page/carrito.html";
     } else {
-        alert("⛔️ No hay productos en el carrito ⛔️");
+        alerta("⛔️ No hay productos en el carrito ⛔️","error")
     }
 });
 
@@ -187,10 +193,10 @@ lupita.addEventListener("click",()=>{
         CargarProducalCarrito()
         cantidadCarro()
     })
+    setTimeout(()=>{
+        $('#onload').fadeOut() 
+        $('body').removeClass('hidden')
+        buscarproductoJSON();
+    },5000)
 
-
-
-    //login()
-    cargarProductos(productos);
-    //filtrar()
 
